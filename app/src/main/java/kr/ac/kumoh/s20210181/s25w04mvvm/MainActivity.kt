@@ -8,7 +8,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import kr.ac.kumoh.s20210181.s25w04mvvm.ui.theme.S25W04MvvmTheme
 
@@ -29,7 +31,8 @@ fun MainScreen(
     viewModel: CounterViewModel = viewModel()
 ) {
     //var count by rememberSaveable { mutableIntStateOf(0) }
-    val counterState = viewModel.counterState.value
+    //val counterState = viewModel.counterState.value
+    val counterState by viewModel.counterState.collectAsStateWithLifecycle()
 
     Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
         Counter(
